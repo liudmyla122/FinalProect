@@ -229,6 +229,9 @@ const Explore = () => {
                         }}
                       />
                     )}
+                    <div className="explore-grid-overlay">
+                      <span className="explore-grid-title">{post.title || 'Untitled'}</span>
+                    </div>
                   </button>
                 )
               })

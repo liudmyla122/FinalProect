@@ -76,10 +76,10 @@
   border: none;
   border-radius: 8px;
   overflow: hidden;
-  background: #fff;
+  background: transparent;
   cursor: pointer;
   text-align: left;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: none;
 }
 
 .saved-post-media-wrap {
@@ -87,6 +87,9 @@
   aspect-ratio: 1;
   overflow: hidden;
   background: #000;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  position: relative;
 }
 
 .saved-post-media {
@@ -97,23 +100,28 @@
 }
 
 .saved-post-title {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  max-width: calc(100% - 24px);
   font-size: 19px;
-  font-weight: 600;
+  font-weight: 700;
   color: #2c3a47;
   font-family: 'Inter', sans-serif;
   line-height: 24px;
-  margin: 10px 12px 12px;
+  margin: 0;
   background: linear-gradient(
     180deg,
-    transparent 55%,
-    rgba(218, 200, 180, 0.55) 55%,
-    rgba(218, 200, 180, 0.55) 92%,
-    transparent 92%
+    transparent 60%,
+    rgba(255, 255, 255, 0.9) 60%
   );
-  padding: 0 10px;
+  padding: 0 4px;
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
   display: inline;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+  z-index: 2;
+  pointer-events: none;
 }
 
 .saved-footer {

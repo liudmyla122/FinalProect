@@ -1303,7 +1303,7 @@ const Home = () => {
 
                     <div className="home-post-caption-block">
                       <div className="home-post-title">
-                        {post.title || 'Без названия'}
+                        {post.title || 'Untitled'}
                       </div>
                       {post.caption && (
                         <div className="home-post-caption">{post.caption}</div>

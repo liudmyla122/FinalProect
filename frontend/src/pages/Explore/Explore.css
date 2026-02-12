@@ -297,6 +297,39 @@
   display: block;
 }
 
+.explore-grid-overlay {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  pointer-events: none;
+}
+
+.explore-grid-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #273443;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(
+    180deg,
+    transparent 60%,
+    rgba(255, 255, 255, 0.9) 60%
+  );
+  padding: 0 6px;
+  border-radius: 0;
+  box-shadow: none;
+  display: inline-block;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  backdrop-filter: none;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
 .explore-loading-grid {
   grid-column: 1 / -1;
   display: flex;
