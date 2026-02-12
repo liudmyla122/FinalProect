@@ -7,11 +7,11 @@
     },
     {
       "source": "/assets/:path*",
-      "destination": "/assets/:path*"
+      "destination": "/frontend/dist/assets/:path*"
     },
     {
       "source": "/((?!api/.*|assets/.*).*)",
-      "destination": "/index.html"
+      "destination": "/frontend/dist/index.html"
     }
   ],
   "functions": {
