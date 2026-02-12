@@ -1,0 +1,32 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "backend/server.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "frontend/dist/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/backend/server.js"
+    },
+    {
+      "src": "/assets/(.*)",
+      "dest": "/frontend/dist/assets/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/dist/index.html"
+    }
+  ],
+  "env": {
+    "MONGO_URI": "mongodb+srv://Liudmyla:faeTon1222!@cluster0.zfb6cwe.mongodb.net/?appName=Cluster0",
+    "JWT_SECRET": "mysecretkey",
+    "NODE_ENV": "production"
+  }
+}

@@ -66,21 +66,25 @@ app.use((req, res) => {
 const PORT = process.env.PORT || 3000
 const HOST = process.env.HOST || '127.0.0.1'
 
-const server = app.listen(PORT, HOST, () => {
-  console.log(`Server running on http://${HOST}:${PORT}`)
-})
+if (process.env.VERCEL) {
+  module.exports = app
+} else {
+  const server = app.listen(PORT, HOST, () => {
+    console.log(`Server running on http://${HOST}:${PORT}`)
+  })
 
-server.on('error', (err) => {
-  if (err.code === 'EADDRINUSE') {
-    console.error(
-      `\n❌ Порт ${PORT} уже занят. Завершите другой процесс на порту ${PORT}:\n   macOS/Linux: lsof -i :${PORT}   затем   kill -9 <PID>\n   Или закройте другой терминал с бэкендом и запустите снова.\n`
-    )
-  } else if (err.code === 'EPERM') {
-    console.error(
-      `\n❌ Нет прав на порт ${PORT}. Запустите терминал от имени администратора или проверьте настройки системы.\n`
-    )
-  } else {
-    console.error('\n❌ Ошибка сервера:', err.message)
-  }
-  process.exit(1)
-})
+  server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      console.error(
+        `\n❌ Порт ${PORT} уже занят. Завершите другой процесс на порту ${PORT}:\n   macOS/Linux: lsof -i :${PORT}   затем   kill -9 <PID>\n   Или закройте другой терминал с бэкендом и запустите снова.\n`
+      )
+    } else if (err.code === 'EPERM') {
+      console.error(
+        `\n❌ Нет прав на порт ${PORT}. Запустите терминал от имени администратора или проверьте настройки системы.\n`
+      )
+    } else {
+      console.error('\n❌ Ошибка сервера:', err.message)
+    }
+    process.exit(1)
+  })
+}

@@ -3,11 +3,15 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 1,
             "patches": [
                 {
                     "date": 1770737376091,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1770896952996,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -317,9 +317,9 @@\n                       </button>\n                     </div>\n                     <div className=\"saved-modal-caption-block\">\n                       <div className=\"saved-modal-title-text\">\n-                        {savedPostModalData.title || 'Без названия'}\n+                        {savedPostModalData.title || 'Untitled'}\n                       </div>\n                       <div className=\"saved-modal-caption\">\n                         {savedPostModalData.caption || ''}\n                       </div>\n"
                 }
             ],
             "date": 1770737376091,
