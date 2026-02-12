@@ -18,7 +18,7 @@
     }
   },
   "env": {
-    "MONGO_URI": "mongodb+srv://Liudmyla:faeTon1222@cluster0.zfb6cwe.mongodb.net/?appName=Cluster0",
+    "MONGO_URI": "mongodb+srv://Liudmyla:faeTon1222@cluster0.zfb6cwe.mongodb.net/instagram?appName=Cluster0",
     "JWT_SECRET": "mysecretkey",
     "NODE_ENV": "production"
   }
