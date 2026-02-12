@@ -30,6 +30,11 @@ app.use(
   }),
 )
 
+app.use((req, res, next) => {
+  console.log(`[Request] ${req.method} ${req.url}`)
+  next()
+})
+
 app.use('/api/auth', require('./src/routes/authRoutes'))
 app.use('/api/search', require('./src/routes/searchRoutes'))
 app.use('/api/explore', require('./src/routes/exploreRoutes'))
