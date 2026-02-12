@@ -75,13 +75,12 @@ app.use((req, res) => {
 const PORT = process.env.PORT || 3000
 const HOST = process.env.HOST || '127.0.0.1'
 
-if (process.env.VERCEL) {
-  module.exports = app
-} else {
+module.exports = app
+
+if (!process.env.VERCEL) {
   const server = app.listen(PORT, HOST, () => {
     console.log(`Server running on http://${HOST}:${PORT}`)
   })
-
   server.on('error', (err) => {
     if (err.code === 'EADDRINUSE') {
       console.error(
