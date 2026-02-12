@@ -1,0 +1,18 @@
+{
+    "sourceFile": "frontend/src/App.css",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1770883591228,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1770883591228,
+            "name": "Commit-0",
+            "content": ".App {\n  min-height: 100vh;\n  background-color: #fafafa;\n}\n\n/* App Layout Responsive Styles */\n.app-layout {\n  display: flex;\n  min-height: 100vh;\n}\n\n.app-layout-sidebar {\n  flex-shrink: 0;\n  width: var(--sidebar-width);\n  transition: width 0.3s ease;\n}\n\n.app-layout-main {\n  flex: 1;\n  min-width: 0;\n  margin-left: var(--sidebar-width);\n  transition: margin-left 0.3s ease;\n}\n\n/* Desktop (1439px and up) */\n@media screen and (min-width: 1440px) {\n  .app-layout-main {\n    max-width: calc(100% - 244px);\n  }\n}\n\n/* Laptop (1024px - 1439px) */\n@media screen and (max-width: 1439px) {\n  .app-layout-main {\n    margin-left: 200px;\n    max-width: calc(100% - 200px);\n  }\n}\n\n/* Tablet Landscape (1024px) */\n@media screen and (max-width: 1024px) {\n  .app-layout-sidebar {\n    width: 80px;\n  }\n\n  .app-layout-main {\n    margin-left: 80px;\n    max-width: calc(100% - 80px);\n  }\n\n  .app-layout-sidebar .app-sidebar-nav-text,\n  .app-layout-sidebar .app-sidebar-current-info,\n  .app-layout-sidebar .app-sidebar-logo {\n    display: none;\n  }\n\n  .app-layout-sidebar .app-sidebar-nav-item {\n    justify-content: center;\n    padding: 12px 8px;\n  }\n\n  .app-layout-sidebar .app-sidebar-current-user {\n    justify-content: center;\n    padding: 10px 8px;\n  }\n}\n\n/* Tablet Portrait and Mobile (768px and below) */\n@media screen and (max-width: 768px) {\n  .app-layout-sidebar {\n    position: fixed;\n    left: -244px;\n    width: 244px;\n    height: 100vh;\n    z-index: 1000;\n    transition: left 0.3s ease;\n  }\n\n  .app-layout-sidebar.open {\n    left: 0;\n  }\n\n  .app-layout-main {\n    margin-left: 0;\n    max-width: 100%;\n    width: 100%;\n  }\n\n  /* Mobile menu button */\n  .mobile-menu-btn {\n    display: flex !important;\n    position: fixed;\n    bottom: 20px;\n    right: 20px;\n    width: 56px;\n    height: 56px;\n    border-radius: 50%;\n    background-color: #5e4453;\n    color: white;\n    border: none;\n    cursor: pointer;\n    z-index: 999;\n    align-items: center;\n    justify-content: center;\n    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);\n  }\n\n  /* Overlay for mobile menu */\n  .mobile-overlay {\n    display: none;\n    position: fixed;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    background-color: rgba(0, 0, 0, 0.5);\n    z-index: 999;\n  }\n\n  .mobile-overlay.active {\n    display: block;\n  }\n}\n\n/* Mobile Small (480px and below) */\n@media screen and (max-width: 480px) {\n  .app-layout-main {\n    padding: 0;\n  }\n\n  .mobile-menu-btn {\n    width: 48px;\n    height: 48px;\n    bottom: 16px;\n    right: 16px;\n  }\n}\n"
+        }
+    ]
+}

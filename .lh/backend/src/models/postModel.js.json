@@ -1,0 +1,18 @@
+{
+    "sourceFile": "backend/src/models/postModel.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1769702030635,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1769702030635,
+            "name": "Commit-0",
+            "content": "const mongoose = require('mongoose');\n\n\nconst postSchema = new mongoose.Schema(\n  {\n    user: {\n      type: mongoose.Schema.Types.ObjectId,\n      ref: 'User',\n      required: true,\n    },\n    \n    profileId: {\n      type: String,\n      default: null,\n    },\n    \n    image: {\n      type: String,\n      required: [true, 'Image is required'],\n    },\n   \n    images: {\n      type: [String],\n      default: [],\n    },\n   \n    isVideo: {\n      type: Boolean,\n      default: false,\n    },\n   \n    title: {\n      type: String,\n      default: '',\n      maxlength: [300, 'Title must be less than 300 characters'],\n    },\n    caption: {\n      type: String,\n      default: '',\n      maxlength: [2200, 'Caption must be less than 2200 characters'],\n    },\n    likes: [\n      {\n        type: mongoose.Schema.Types.ObjectId,\n        ref: 'User',\n      },\n    ],\n    comments: [\n      {\n        user: {\n          type: mongoose.Schema.Types.ObjectId,\n          ref: 'User',\n          required: true,\n        },\n        text: {\n          type: String,\n          required: true,\n          maxlength: [500, 'Comment must be less than 500 characters'],\n        },\n        createdAt: {\n          type: Date,\n          default: Date.now,\n        },\n        replies: [\n          {\n            user: {\n              type: mongoose.Schema.Types.ObjectId,\n              ref: 'User',\n              required: true,\n            },\n            text: {\n              type: String,\n              required: true,\n              maxlength: [500, 'Reply must be less than 500 characters'],\n            },\n            createdAt: {\n              type: Date,\n              default: Date.now,\n            },\n          },\n        ],\n      },\n    ],\n    views: {\n      type: Number,\n      default: 0,\n    },\n  },\n  {\n    timestamps: true,\n  }\n);\n\n\npostSchema.index({ user: 1, createdAt: -1 });\npostSchema.index({ user: 1, profileId: 1, createdAt: -1 });\n\nconst Post = mongoose.model('Post', postSchema);\n\nmodule.exports = Post;\n"
+        }
+    ]
+}

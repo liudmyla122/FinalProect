@@ -1,0 +1,18 @@
+{
+    "sourceFile": "backend/src/middlewares/authMiddleware.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1769701994165,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1769701994165,
+            "name": "Commit-0",
+            "content": "const { verifyToken } = require('../config/jwt');\nconst User = require('../models/userModel');\n\nconst authMiddleware = async (req, res, next) => {\n  try {\n    \n    const authHeader = req.headers.authorization;\n\n    if (!authHeader || !authHeader.startsWith('Bearer ')) {\n      return res.status(401).json({ message: 'No token provided, authorization denied' });\n    }\n\n    const token = authHeader.substring(7); \n\n   \n    const decoded = verifyToken(token);\n\n    if (!decoded) {\n      return res.status(401).json({ message: 'Token is not valid' });\n    }\n\n    \n    const user = await User.findById(decoded.userId).select('-password');\n\n    if (!user) {\n      console.error('Пользователь не найден по ID из токена:', decoded.userId);\n      return res.status(401).json({ \n        success: false,\n        message: 'User not found' \n      });\n    }\n\n    \n    if (!user._id || !user.username) {\n      console.error(' Пользователь не имеет необходимых полей:', {\n        hasId: !!user._id,\n        hasUsername: !!user.username\n      });\n      return res.status(401).json({ \n        success: false,\n        message: 'Invalid user data' \n      });\n    }\n\n    \n    req.user = user;\n    next();\n  } catch (error) {\n    console.error('Auth middleware error:', error);\n    console.error('Детали ошибки:', {\n      name: error.name,\n      message: error.message,\n      stack: error.stack\n    });\n    res.status(401).json({ \n      success: false,\n      message: 'Token is not valid',\n      error: error.message \n    });\n  }\n};\n\nmodule.exports = authMiddleware;\n"
+        }
+    ]
+}

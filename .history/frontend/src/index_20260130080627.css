@@ -1,0 +1,52 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.profile-username,
+.sidebar-current-username,
+.profile-username-row,
+.profile-post-modal-username,
+.profile-post-modal-comment-username,
+.home-sidebar-current-username,
+.home-create-username,
+.home-create-username-handle,
+.home-create-username-fullname,
+.home-post-username,
+.home-post-caption-username,
+.home-notification-username,
+.home-search-result-username,
+.home-search-recent-username,
+.explore-sidebar-current-username,
+.explore-sidebar-current-name,
+.explore-modal-comment-username,
+.messages-chat-username,
+.messages-chat-header-username,
+.messages-chats-my-name,
+.messages-profile-name,
+.search-recent-username,
+.search-post-username,
+.search-post-caption-username,
+.home-post-modal-comment-username,
+.saved-modal-comment-username,
+.global-search-recent-username,
+.global-search-result-username,
+.app-sidebar-current-name,
+.app-sidebar-current-username,
+.edit-profile-name {
+  font-family: 'Praise', cursive;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

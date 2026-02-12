@@ -1,0 +1,18 @@
+{
+    "sourceFile": "frontend/src/pages/Login/Login.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1769703769673,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1769703769673,
+            "name": "Commit-0",
+            "content": "import { useState, useEffect } from 'react';\nimport { Link, useNavigate } from 'react-router-dom';\nimport { authAPI } from '../../services/api';\nimport { setUserToLocalStorage } from '../../utils/storage';\nimport './Auth.css';\n\nconst Login = () => {\n  const navigate = useNavigate();\n  \n  useEffect(() => {\n    document.title = 'Log in - ICHGRAM';\n  }, []);\n  const [formData, setFormData] = useState({\n    email: '',\n    password: '',\n  });\n  const [error, setError] = useState('');\n  const [loading, setLoading] = useState(false);\n\n  const handleChange = (e) => {\n    setFormData({\n      ...formData,\n      [e.target.name]: e.target.value,\n    });\n    setError('');\n  };\n\n  const handleSubmit = async (e) => {\n    e.preventDefault();\n    setError('');\n    setLoading(true);\n\n    try {\n      const response = await authAPI.login(formData.email, formData.password);\n      localStorage.setItem('token', response.token);\n      \n      setUserToLocalStorage(response.user);\n      navigate('/');\n    } catch (err) {\n      setError(err.response?.data?.message || 'Ошибка при входе');\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  return (\n    <div className=\"auth-container\">\n      <div className=\"auth-layout\">\n        <div className=\"auth-phones\" />\n\n        <div className=\"auth-right\">\n          <div className=\"auth-box\">\n            <h1 className=\"auth-logo\">ICHGRAM</h1>\n\n            <form onSubmit={handleSubmit} className=\"auth-form\">\n              {error && <div className=\"auth-error\">{error}</div>}\n\n              <input\n                type=\"email\"\n                name=\"email\"\n                placeholder=\"Username, or email\"\n                value={formData.email}\n                onChange={handleChange}\n                required\n                className=\"auth-input\"\n              />\n\n              <input\n                type=\"password\"\n                name=\"password\"\n                placeholder=\"Password\"\n                value={formData.password}\n                onChange={handleChange}\n                required\n                className=\"auth-input\"\n              />\n\n              <button type=\"submit\" className=\"auth-button\" disabled={loading}>\n                {loading ? 'Logging in...' : 'Log in'}\n              </button>\n            </form>\n\n            <div className=\"auth-or\">\n              <div className=\"auth-or-line\" />\n              <span className=\"auth-or-text\">OR</span>\n              <div className=\"auth-or-line\" />\n            </div>\n\n            <Link\n              to=\"/reset\"\n              className=\"auth-link-button\"\n            >\n              Forgot password?\n            </Link>\n          </div>\n\n          <div className=\"auth-switch-box\">\n            <p className=\"auth-switch\">\n              Don't have an account?{' '}\n              <Link to=\"/register\" className=\"auth-link\">\n                Sign up\n              </Link>\n            </p>\n          </div>\n        </div>\n      </div>\n    </div>\n  );\n};\n\nexport default Login;\n\n"
+        }
+    ]
+}

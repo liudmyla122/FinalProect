@@ -1,0 +1,22 @@
+{
+    "sourceFile": "backend/src/debug_check_posts.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1770376609342,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1770827374765,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,13 @@\n const mongoose = require('mongoose')\n \n-// Adjust path if necessary\n const MONGO_URI = 'mongodb://localhost:27017/instagram'\n \n const run = async () => {\n   try {\n     await mongoose.connect(MONGO_URI)\n     console.log('Connected to MongoDB')\n \n-    // List all users and their profiles\n     const users = await mongoose.connection.db.collection('users').find({}).toArray();\n \n     console.log(`Found ${users.length} total users.`);\n \n@@ -20,9 +18,8 @@\n       } else {\n           console.log('  No profiles.');\n       }\n \n-      // Find posts for this user\n       const posts = await mongoose.connection.db.collection('posts').find({\n         user: u._id\n       }).toArray();\n \n@@ -42,4 +39,5 @@\n   }\n }\n \n run()\n+\n"
+                }
+            ],
+            "date": 1770376609342,
+            "name": "Commit-0",
+            "content": "const mongoose = require('mongoose');\n\n// Adjust path if necessary\nconst MONGO_URI = 'mongodb://localhost:27017/instagram';\n\nconst run = async () => {\n  try {\n    await mongoose.connect(MONGO_URI);\n    console.log('Connected to MongoDB');\n\n    // List all users\n    const users = await mongoose.connection.db.collection('users').find({}).toArray();\n\n    console.log(`Found ${users.length} total users.`);\n\n    for (const u of users) {\n      console.log(`\\nUser: ${u.username} (ID: ${u._id})`);\n      if (u.profiles && u.profiles.length > 0) {\n          console.log('Profiles:', u.profiles.map(p => `${p.username} (ID: ${p.id})`).join(', '));\n      }\n\n      // Find posts for this user\n      const posts = await mongoose.connection.db.collection('posts').find({\n        user: u._id\n      }).toArray();\n\n      if (posts.length > 0) {\n          console.log(`  Posts (${posts.length}):`);\n          posts.forEach(p => {\n            console.log(`    - ID: ${p._id}, Title: \"${p.title}\", ProfileId: ${p.profileId}`);\n          });\n      } else {\n          console.log('  No posts.');\n      }\n    }\n\n  } catch (err) {\n    console.error('Error:', err);\n  } finally {\n    await mongoose.disconnect();\n  }\n};\n\nrun();\n"
+        }
+    ]
+}

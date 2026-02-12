@@ -1,0 +1,18 @@
+{
+    "sourceFile": "backend/src/controllers/searchController.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1769701924529,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1769701924529,
+            "name": "Commit-0",
+            "content": "const User = require('../models/userModel');\n\n\nconst searchUsers = async (req, res) => {\n  try {\n    const { q } = req.query;\n\n    \n    if (!q || q.trim() === '') {\n      return res.status(200).json({\n        success: true,\n        users: [],\n        message: 'Empty search query',\n      });\n    }\n\n   \n    const searchRegex = new RegExp(q.trim(), 'i');\n\n    const users = await User.find({\n      $or: [\n        { fullName: { $regex: searchRegex } },\n        { username: { $regex: searchRegex } },\n      ],\n    })\n      .select('username fullName avatar bio followers following')\n      .limit(50) \n      .lean();\n\n   \n    const formattedUsers = users.map((user) => ({\n      id: user._id,\n      username: user.username,\n      fullName: user.fullName,\n      avatar: user.avatar || '',\n      bio: user.bio || '',\n      followersCount: user.followers?.length || 0,\n      followingCount: user.following?.length || 0,\n    }));\n\n    res.status(200).json({\n      success: true,\n      users: formattedUsers,\n      count: formattedUsers.length,\n    });\n  } catch (error) {\n    console.error('Search users error:', error);\n    res.status(500).json({\n      success: false,\n      message: 'Server error during user search',\n      error: error.message,\n    });\n  }\n};\n\nmodule.exports = {\n  searchUsers,\n};\n"
+        }
+    ]
+}

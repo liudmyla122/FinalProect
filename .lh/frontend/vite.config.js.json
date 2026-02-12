@@ -1,0 +1,22 @@
+{
+    "sourceFile": "frontend/vite.config.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1769705998880,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1770735929617,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,15 +2,20 @@\n import react from '@vitejs/plugin-react'\n \n export default defineConfig({\n   plugins: [react()],\n+  cacheDir: 'node_modules/.vite-ichgram',\n   server: {\n     port: 5173,\n-   \n+    strictPort: true,\n     proxy: {\n       '/api': {\n         target: 'http://localhost:3000',\n         changeOrigin: true,\n+        secure: false,\n       },\n     },\n   },\n+  optimizeDeps: {\n+    exclude: ['framer-motion'],\n+  },\n })\n"
+                }
+            ],
+            "date": 1769705998880,
+            "name": "Commit-0",
+            "content": "import { defineConfig } from 'vite'\nimport react from '@vitejs/plugin-react'\n\nexport default defineConfig({\n  plugins: [react()],\n  server: {\n    port: 5173,\n   \n    proxy: {\n      '/api': {\n        target: 'http://localhost:3000',\n        changeOrigin: true,\n      },\n    },\n  },\n})\n"
+        }
+    ]
+}

@@ -1,0 +1,231 @@
+.edit-profile-page {
+  width: 1440px;
+  height: 900px;
+  min-height: 900px;
+  margin: 0 auto;
+  display: flex;
+  background-color: #fafafa;
+}
+
+.edit-profile-page .profile-sidebar {
+  height: 900px;
+  border-right: none;
+  position: fixed;
+  overflow: hidden;
+}
+
+.edit-profile-page .profile-sidebar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 0;
+  background-color: #b8afb9;
+  border-radius: 999px;
+  animation: sidebarDraw 7s ease-in-out infinite;
+}
+
+@keyframes sidebarDraw {
+  0% {
+    height: 0;
+    opacity: 1;
+  }
+  80% {
+    height: 100%;
+    opacity: 1;
+  }
+  90% {
+    height: 100%;
+    opacity: 0;
+  }
+  100% {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+.edit-profile-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+}
+
+.edit-profile-header {
+  padding: 20px 40px;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.edit-profile-header h1 {
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.edit-profile-content {
+  padding: 40px 80px;
+}
+
+.edit-profile-card {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.edit-profile-avatar-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 32px;
+  background-color: #f7f7f7;
+  border-radius: 16px;
+  margin-bottom: 32px;
+}
+
+.edit-profile-avatar-circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-profile-avatar-text {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+}
+
+.edit-profile-avatar-image {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.edit-profile-avatar-video {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.edit-profile-name-block {
+  flex: 1;
+  margin-left: 16px;
+}
+
+.edit-profile-name {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.edit-profile-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #8e8e8e;
+}
+
+.edit-profile-newphoto-btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  background-color: #00a9be;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.edit-profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.edit-profile-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.edit-profile-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.edit-profile-input {
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid #dbdbdb;
+  padding: 0 12px;
+  font-family: 'Inter', sans-serif;
+}
+
+.edit-profile-textarea {
+  border-radius: 8px;
+  border: 1px solid #dbdbdb;
+  padding: 8px 12px;
+  font-family: 'Inter', sans-serif;
+  resize: none;
+}
+
+.edit-profile-counter {
+  align-self: flex-end;
+  font-size: 12px;
+  color: #8e8e8e;
+}
+
+.edit-profile-actions {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.edit-profile-save-btn {
+  padding: 10px 32px;
+  border-radius: 8px;
+  border: none;
+  background-color: #00a9be;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s, background-color 0.2s;
+}
+
+.edit-profile-save-btn:hover:not(:disabled) {
+  background-color: #0095a8;
+}
+
+.edit-profile-save-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.edit-profile-delete-btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  border: 1px solid #ed4956;
+  background-color: transparent;
+  color: #ed4956;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.edit-profile-delete-btn:hover:not(:disabled) {
+  background-color: rgba(237, 73, 86, 0.06);
+}
+
+.edit-profile-delete-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

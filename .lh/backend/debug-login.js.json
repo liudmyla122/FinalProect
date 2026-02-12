@@ -1,0 +1,22 @@
+{
+    "sourceFile": "backend/debug-login.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1770808589089,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1770829231037,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     const password = 'password123'\n \n     console.log('Testing login for:', email)\n \n-    // Find user\n+    \n     const user = await User.findOne({ email: email.toLowerCase() })\n     console.log('User found:', !!user)\n \n     if (user) {\n"
+                }
+            ],
+            "date": 1770808589089,
+            "name": "Commit-0",
+            "content": "const mongoose = require('mongoose')\nconst bcrypt = require('bcrypt')\nrequire('dotenv').config()\n\nconst User = require('./src/models/userModel')\nconst connectDB = require('./src/config/db')\n\nconst debugLogin = async () => {\n  try {\n    await connectDB()\n    \n    const email = 'test@example.com'\n    const password = 'password123'\n    \n    console.log('Testing login for:', email)\n    \n    // Find user\n    const user = await User.findOne({ email: email.toLowerCase() })\n    console.log('User found:', !!user)\n    \n    if (user) {\n      console.log('User details:', {\n        email: user.email,\n        username: user.username,\n        hasPassword: !!user.password,\n        passwordLength: user.password?.length\n      })\n      \n      try {\n        const isValid = await user.comparePassword(password)\n        console.log('comparePassword result:', isValid)\n      } catch (error) {\n        console.error('comparePassword error:', error)\n      }\n      \n      try {\n        const directCompare = await bcrypt.compare(password, user.password)\n        console.log('Direct bcrypt compare:', directCompare)\n      } catch (error) {\n        console.error('Direct compare error:', error)\n      }\n    }\n    \n    process.exit(0)\n  } catch (error) {\n    console.error('Error:', error)\n    process.exit(1)\n  }\n}\n\ndebugLogin()"
+        }
+    ]
+}

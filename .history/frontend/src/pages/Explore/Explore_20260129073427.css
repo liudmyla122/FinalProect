@@ -1,0 +1,365 @@
+/* Контейнер страницы Explore */
+.explore-container {
+  width: 1440px;
+  min-height: 100vh;
+  margin: 0 auto;
+  /* Белый фон как на референсе с сеткой */
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  border: none !important;
+  outline: none !important;
+  gap: 0 !important;
+}
+
+.explore-container > * {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Основной layout */
+.explore-layout {
+  display: flex;
+  flex: 1;
+  min-height: calc(100vh - 60px);
+  padding: 0 !important;
+  margin: 0 !important;
+  gap: 0 !important;
+  border: none !important;
+  outline: none !important;
+  margin-left: 244px; /* место под фиксированную боковую панель */
+}
+
+/* Убираем все возможные границы между элементами */
+.explore-layout > * {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Левая боковая панель */
+.explore-sidebar {
+  width: 244px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 16px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  position: fixed;
+  top: 0;
+  left: calc(50% - 720px); /* выравнивание по левому краю контейнера 1440px */
+  height: 100vh;
+  border: none !important;
+  border-right: none !important;
+  border-left: none !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  margin: 0 !important;
+  margin-right: 0 !important;
+}
+
+.explore-sidebar-logo {
+  font-family: 'Praise', cursive;
+  font-size: 32px;
+  font-weight: 400;
+  color: #273443;
+  margin-bottom: 30px;
+  padding-left: 8px;
+}
+
+.explore-sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Блок "мой профиль" внизу боковой панели Explore */
+.explore-sidebar-current-user {
+  margin-top: 24px;
+  padding: 10px 8px 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #273443;
+  font-family: 'Inter', sans-serif;
+}
+
+.explore-sidebar-current-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #DDC9D4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.explore-sidebar-current-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* аватарка целиком помещается в кружок */
+  border-radius: 50%;
+}
+
+.explore-sidebar-current-avatar video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* заполняет весь круг */
+  border-radius: 50%;
+}
+
+.explore-sidebar-current-initial {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2C3A47;
+}
+
+.explore-sidebar-current-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.explore-sidebar-current-name {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.explore-sidebar-current-username {
+  font-size: 12px;
+  color: #8e8e8e;
+}
+
+.explore-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #273443;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  transition: background-color 0.2s;
+}
+
+.explore-nav-item:hover {
+  background-color: #fafafa;
+}
+
+.explore-nav-item.active {
+  background-color: #f0f0f0;
+  font-weight: 600;
+}
+
+.explore-nav-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.explore-nav-item.active .explore-nav-icon {
+  stroke-width: 2.5;
+}
+
+/* Контейнер для анимации девочки */
+.explore-sidebar-animation {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  overflow: hidden;
+  margin-top: auto;
+  min-height: 300px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background-color: transparent;
+  padding-bottom: 0;
+}
+
+/* Видео анимации девочки */
+.explore-animation-video {
+  width: 150%;
+  max-width: 150%;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+  z-index: 1;
+  visibility: visible !important;
+  opacity: 0.7;
+  position: relative;
+  transform: scale(1.5);
+  transform-origin: center bottom;
+  /* Удаление белого фона через mix-blend-mode - multiply убирает светлые участки */
+  mix-blend-mode: multiply;
+  filter: contrast(1.3) brightness(1.15) saturate(1.1);
+  margin-bottom: 0;
+}
+
+/* Основная область контента */
+.explore-main {
+  flex: 1;
+  /* Тоже белый фон, чтобы не было голубого прямоугольника */
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 0 !important;
+  overflow-y: auto;
+  border: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  margin: 0 !important;
+  margin-left: 0 !important;
+  margin-bottom: 0 !important;
+  margin-top: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Сетка постов — карточный стиль ленты для всех пользователей */
+.explore-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 16px;
+  width: 100%;
+  max-width: 960px;
+  margin: 32px auto 48px auto;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+.explore-grid-item {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(44, 58, 71, 0.08), 0 4px 20px rgba(0, 169, 190, 0.06);
+  transition: box-shadow 0.25s ease, transform 0.2s ease;
+  background: linear-gradient(135deg, #e8e4ec 0%, #d4ceda 100%);
+}
+
+.explore-grid-item:hover {
+  box-shadow: 0 8px 24px rgba(44, 58, 71, 0.12), 0 12px 32px rgba(0, 169, 190, 0.08);
+  transform: translateY(-3px);
+}
+
+.explore-grid-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.explore-loading-grid {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #273443;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  min-height: 400px;
+}
+
+.explore-empty {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #273443;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  min-height: 400px;
+}
+
+.explore-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: #273443;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+}
+
+/* Нижняя полоса */
+.explore-footer {
+  width: 100%;
+  min-height: 60px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  border: none !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  margin: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Убираем любые границы между основным контентом и футером */
+.explore-main + .explore-footer,
+.explore-footer {
+  border-top: none !important;
+  border-top-width: 0 !important;
+  border-top-style: none !important;
+  border-top-color: transparent !important;
+}
+
+.explore-main {
+  border-bottom: none !important;
+  border-bottom-width: 0 !important;
+  border-bottom-style: none !important;
+  border-bottom-color: transparent !important;
+}
+
+.explore-footer-nav {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.explore-footer-nav a {
+  color: #737373;
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.explore-footer-nav a:hover {
+  color: #2C3A47;
+}
+
+.explore-footer-copyright {
+  color: #737373;
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+}

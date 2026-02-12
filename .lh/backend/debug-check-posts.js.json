@@ -1,0 +1,18 @@
+{
+    "sourceFile": "backend/debug-check-posts.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1770808926728,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1770808926728,
+            "name": "Commit-0",
+            "content": "const mongoose = require('mongoose')\nrequire('dotenv').config()\n\nconst Post = require('./src/models/postModel')\nconst connectDB = require('./src/config/db')\n\nconst checkPosts = async () => {\n  try {\n    await connectDB()\n    \n    console.log('🔍 Checking MongoDB connection...')\n    console.log('MongoDB connected:', mongoose.connection.readyState === 1 ? 'YES' : 'NO')\n    \n    console.log('\\n📊 Counting posts in database...')\n    const count = await Post.countDocuments()\n    console.log('Total posts in database:', count)\n    \n    if (count > 0) {\n      console.log('\\n📝 Sample posts:')\n      const posts = await Post.find().limit(5).lean()\n      posts.forEach((post, i) => {\n        console.log(`\\nPost ${i + 1}:`)\n        console.log('  ID:', post._id)\n        console.log('  User:', post.user)\n        console.log('  Title:', post.title || '(no title)')\n        console.log('  Created:', post.createdAt)\n        console.log('  Image:', post.image ? post.image.substring(0, 50) + '...' : '(no image)')\n      })\n    } else {\n      console.log('\\n⚠️ No posts found in database!')\n      console.log('Possible reasons:')\n      console.log('  1. Posts have not been created yet')\n      console.log('  2. Posts were deleted')\n      console.log('  3. Wrong database/collection')\n    }\n    \n    console.log('\\n✅ Database check complete')\n    process.exit(0)\n  } catch (error) {\n    console.error('❌ Error during database check:')\n    console.error(error.message)\n    console.error(error.stack)\n    process.exit(1)\n  }\n}\n\ncheckPosts()\n"
+        }
+    ]
+}

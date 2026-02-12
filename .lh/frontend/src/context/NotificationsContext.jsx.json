@@ -1,0 +1,18 @@
+{
+    "sourceFile": "frontend/src/context/NotificationsContext.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1769785214207,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1769785214207,
+            "name": "Commit-0",
+            "content": "import { createContext, useContext, useState } from 'react'\n\nconst NotificationsContext = createContext(null)\n\nexport function NotificationsProvider({ children }) {\n  const [isOpen, setIsOpen] = useState(false)\n  const openNotifications = () => setIsOpen(true)\n  const closeNotifications = () => setIsOpen(false)\n  const toggleNotifications = () => setIsOpen(prev => !prev)\n\n  return (\n    <NotificationsContext.Provider value={{ isOpen, openNotifications, closeNotifications, toggleNotifications }}>\n      {children}\n    </NotificationsContext.Provider>\n  )\n}\n\nexport function useNotifications() {\n  const ctx = useContext(NotificationsContext)\n  if (!ctx) {\n    return { \n      isOpen: false, \n      openNotifications: () => {}, \n      closeNotifications: () => {},\n      toggleNotifications: () => {}\n    }\n  }\n  return ctx\n}\n"
+        }
+    ]
+}

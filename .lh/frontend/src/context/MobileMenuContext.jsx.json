@@ -1,0 +1,18 @@
+{
+    "sourceFile": "frontend/src/context/MobileMenuContext.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1770885995464,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1770885995464,
+            "name": "Commit-0",
+            "content": "import { createContext, useContext, useState, useCallback } from 'react'\n\nconst MobileMenuContext = createContext()\n\nexport function MobileMenuProvider({ children }) {\n  const [isMobileOpen, setIsMobileOpen] = useState(false)\n\n  const openMobileMenu = useCallback(() => {\n    setIsMobileOpen(true)\n  }, [])\n\n  const closeMobileMenu = useCallback(() => {\n    setIsMobileOpen(false)\n  }, [])\n\n  const toggleMobileMenu = useCallback(() => {\n    setIsMobileOpen(prev => !prev)\n  }, [])\n\n  return (\n    <MobileMenuContext.Provider\n      value={{\n        isMobileOpen,\n        openMobileMenu,\n        closeMobileMenu,\n        toggleMobileMenu,\n      }}\n    >\n      {children}\n    </MobileMenuContext.Provider>\n  )\n}\n\nexport function useMobileMenu() {\n  const context = useContext(MobileMenuContext)\n  if (!context) {\n    throw new Error('useMobileMenu must be used within a MobileMenuProvider')\n  }\n  return context\n}\n"
+        }
+    ]
+}

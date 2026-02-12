@@ -1,0 +1,22 @@
+{
+    "sourceFile": "frontend/src/utils/storage.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1769705932760,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1770828964639,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,11 +22,8 @@\n     console.warn('Не удалось сохранить user в localStorage:', e)\n   }\n }\n \n-// Максимальный размер аватара, который мы сохраняем в localStorage\n-// Увеличен, чтобы большие base64‑аватары профиля могли\n-// использоваться в разных частях приложения (модалка создания поста и т.п.)\n const MAX_AVATAR_STORAGE = 2 * 1024 * 1024\n \n export function setProfileAvatarSafe(profileId, avatar) {\n   if (\n"
+                }
+            ],
+            "date": 1769705932760,
+            "name": "Commit-0",
+            "content": "\nexport function getUserForLocalStorage(user) {\n  if (!user || typeof user !== 'object') return user;\n  const { avatar, ...rest } = user;\n  const isLargeOrBase64 =\n    typeof avatar === 'string' &&\n    (avatar.startsWith('data:') || avatar.length > 2000);\n  if (isLargeOrBase64) {\n    return { ...rest, avatarType: user.avatarType || 'image' };\n  }\n  return { ...rest, avatar: avatar || '', avatarType: user.avatarType || 'image' };\n}\n\n\nexport function setUserToLocalStorage(user) {\n  try {\n    const safe = getUserForLocalStorage(user);\n    localStorage.setItem('user', JSON.stringify(safe));\n  } catch (e) {\n    console.warn('Не удалось сохранить user в localStorage:', e);\n  }\n}\n\nconst MAX_AVATAR_STORAGE = 100 * 1024; \n\n\nexport function setProfileAvatarSafe(profileId, avatar) {\n  if (!profileId || typeof avatar !== 'string' || avatar.length > MAX_AVATAR_STORAGE) return;\n  try {\n    localStorage.setItem(`profile_avatar_${profileId}`, avatar);\n  } catch (e) {\n    console.warn('Не удалось сохранить аватар в отдельное хранилище:', e);\n  }\n}\n"
+        }
+    ]
+}

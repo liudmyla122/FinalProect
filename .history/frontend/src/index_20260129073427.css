@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Шрифт ников — как в названии приложения ICHGRAM (Praise) */
+.profile-username,
+.sidebar-current-username,
+.profile-post-modal-username,
+.profile-post-modal-comment-username,
+.home-sidebar-current-username,
+.home-create-username-handle,
+.home-post-username,
+.home-post-caption-username,
+.home-notification-username,
+.home-search-result-username,
+.home-search-recent-username,
+.explore-sidebar-current-username,
+.messages-chat-username,
+.messages-chat-header-username,
+.search-recent-username,
+.search-post-username,
+.search-post-caption-username,
+.home-post-modal-comment-username {
+  font-family: 'Praise', cursive;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

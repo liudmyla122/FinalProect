@@ -1,0 +1,18 @@
+{
+    "sourceFile": "backend/src/controllers/exploreController.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1769701588291,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1769701588291,
+            "name": "Commit-0",
+            "content": "const Post = require('../models/postModel');\n\n\nconst getExplorePosts = async (req, res) => {\n  try {\n    const limit = parseInt(req.query.limit) || 20; \n    const maxLimit = 100; \n\n   \n    const safeLimit = Math.min(limit, maxLimit);\n\n    \n    const totalCount = await Post.countDocuments();\n\n    let posts;\n\n    if (totalCount <= safeLimit) {\n     \n      posts = await Post.find()\n        .populate('user', 'username fullName avatar')\n        .lean();\n    } else {\n      \n      posts = await Post.aggregate([\n        { $sample: { size: safeLimit } }, \n        {\n          $lookup: {\n            from: 'users',\n            localField: 'user',\n            foreignField: '_id',\n            as: 'userData',\n          },\n        },\n        {\n          $unwind: {\n            path: '$userData',\n            preserveNullAndEmptyArrays: true,\n          },\n        },\n        {\n          $project: {\n            _id: 1,\n            image: 1,\n            isVideo: 1,\n            caption: 1,\n            likes: 1,\n            comments: 1,\n            createdAt: 1,\n            updatedAt: 1,\n            user: {\n              id: '$userData._id',\n              username: '$userData.username',\n              fullName: '$userData.fullName',\n              avatar: '$userData.avatar',\n            },\n            likesCount: { $size: '$likes' },\n            commentsCount: { $size: '$comments' },\n          },\n        },\n        \n      ]);\n    }\n\n    \n    const formattedPosts = posts.map((post) => ({\n      id: post._id || post.id,\n      image: post.image,\n      isVideo: post.isVideo || false,\n      caption: post.caption || '',\n      createdAt: post.createdAt,\n      updatedAt: post.updatedAt,\n      user: post.user || {\n        id: post.userData?._id,\n        username: post.userData?.username || 'Unknown',\n        fullName: post.userData?.fullName || 'Unknown User',\n        avatar: post.userData?.avatar || '',\n      },\n      likesCount: post.likesCount || post.likes?.length || 0,\n      commentsCount: post.commentsCount || post.comments?.length || 0,\n    }));\n\n    res.status(200).json({\n      success: true,\n      posts: formattedPosts,\n      count: formattedPosts.length,\n    });\n  } catch (error) {\n    console.error('Explore posts error:', error);\n    res.status(500).json({\n      success: false,\n      message: 'Server error during explore posts fetch',\n      error: error.message,\n    });\n  }\n};\n\nmodule.exports = {\n  getExplorePosts,\n};\n"
+        }
+    ]
+}

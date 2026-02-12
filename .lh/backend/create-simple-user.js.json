@@ -1,0 +1,30 @@
+{
+    "sourceFile": "backend/create-simple-user.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1770807616320,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1770807632391,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,8 @@\n     \n     // Delete existing test user\n     await User.deleteOne({ email: 'simple@example.com' })\n     \n-    // Create new user using the model's pre-save hook\n     const user = new User({\n       email: 'simple@example.com',\n       username: 'simpleuser',\n       fullName: 'Simple User',\n@@ -33,5 +32,5 @@\n     process.exit(1)\n   }\n }\n \n-createSimpleUser()\n\\ No newline at end of file\n+createSimpleUser()\n"
+                },
+                {
+                    "date": 1770807815452,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,8 @@\n \n     await user.save()\n     console.log('Simple user created successfully')\n \n-    // Test the password immediately\n     const testUser = await User.findOne({ email: 'simple@example.com' })\n     const isValid = await testUser.comparePassword('password123')\n     console.log('Password test after creation:', isValid)\n \n"
+                },
+                {
+                    "date": 1770807862103,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,8 @@\n const createSimpleUser = async () => {\n   try {\n     await connectDB()\n \n-    // Delete existing test user\n     await User.deleteOne({ email: 'simple@example.com' })\n \n     const user = new User({\n       email: 'simple@example.com',\n"
+                }
+            ],
+            "date": 1770807616320,
+            "name": "Commit-0",
+            "content": "const mongoose = require('mongoose')\nrequire('dotenv').config()\n\nconst User = require('./src/models/userModel')\nconst connectDB = require('./src/config/db')\n\nconst createSimpleUser = async () => {\n  try {\n    await connectDB()\n    \n    // Delete existing test user\n    await User.deleteOne({ email: 'simple@example.com' })\n    \n    // Create new user using the model's pre-save hook\n    const user = new User({\n      email: 'simple@example.com',\n      username: 'simpleuser',\n      fullName: 'Simple User',\n      bio: 'Simple test user'\n    })\n    \n    await user.save()\n    console.log('Simple user created successfully')\n    \n    // Test the password immediately\n    const testUser = await User.findOne({ email: 'simple@example.com' })\n    const isValid = await testUser.comparePassword('password123')\n    console.log('Password test after creation:', isValid)\n    \n    process.exit(0)\n  } catch (error) {\n    console.error('Error:', error)\n    process.exit(1)\n  }\n}\n\ncreateSimpleUser()"
+        }
+    ]
+}

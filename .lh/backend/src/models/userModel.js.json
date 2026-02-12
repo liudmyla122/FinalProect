@@ -1,0 +1,18 @@
+{
+    "sourceFile": "backend/src/models/userModel.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1769702056837,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1769702056837,
+            "name": "Commit-0",
+            "content": "const mongoose = require('mongoose');\nconst bcrypt = require('bcrypt');\n\nconst userSchema = new mongoose.Schema(\n  {\n    email: {\n      type: String,\n      required: [true, 'Email is required'],\n      unique: true,\n      lowercase: true,\n      trim: true,\n    },\n    username: {\n      type: String,\n      required: [true, 'Username is required'],\n      unique: true,\n      trim: true,\n      minlength: [3, 'Username must be at least 3 characters'],\n    },\n    fullName: {\n      type: String,\n      required: [true, 'Full name is required'],\n      trim: true,\n    },\n    password: {\n      type: String,\n      required: [true, 'Password is required'],\n      minlength: [6, 'Password must be at least 6 characters'],\n    },\n    avatar: {\n      type: String,\n      default: '',\n    },\n    avatarType: {\n      type: String,\n      enum: ['image', 'video'],\n      default: 'image',\n    },\n    bio: {\n      type: String,\n      default: '',\n      maxlength: [150, 'Bio must be less than 150 characters'],\n    },\n    followers: [\n      {\n        type: mongoose.Schema.Types.ObjectId,\n        ref: 'User',\n      },\n    ],\n    following: [\n      {\n        type: mongoose.Schema.Types.ObjectId,\n        ref: 'User',\n      },\n    ],\n    posts: [\n      {\n        type: mongoose.Schema.Types.ObjectId,\n        ref: 'Post',\n      },\n  ],\n  \n  profiles: [\n    {\n      id: {\n        type: String,\n      },\n      username: {\n        type: String,\n      },\n      website: {\n        type: String,\n      },\n      about: {\n        type: String,\n      },\n      avatar: {\n        type: String,\n      },\n      avatarType: {\n        type: String,\n        default: 'image',\n      },\n      profileCompleted: {\n        type: Boolean,\n        default: false,\n      },\n      postsCount: {\n        type: Number,\n        default: 0,\n      },\n      followersCount: {\n        type: Number,\n        default: 0,\n      },\n      followingCount: {\n        type: Number,\n        default: 0,\n      },\n    },\n  ],\n  },\n  {\n    timestamps: true,\n  }\n);\n\n\nuserSchema.pre('save', async function (next) {\n  if (!this.isModified('password')) {\n    return next();\n  }\n\n  try {\n    const salt = await bcrypt.genSalt(10);\n    this.password = await bcrypt.hash(this.password, salt);\n    next();\n  } catch (error) {\n    next(error);\n  }\n});\n\n\nuserSchema.methods.comparePassword = async function (candidatePassword) {\n  return await bcrypt.compare(candidatePassword, this.password);\n};\n\n\nuserSchema.methods.toJSON = function () {\n  const userObject = this.toObject();\n  delete userObject.password;\n  return userObject;\n};\n\nconst User = mongoose.model('User', userSchema);\n\nmodule.exports = User;\n"
+        }
+    ]
+}

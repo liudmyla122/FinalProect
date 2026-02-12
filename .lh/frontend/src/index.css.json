@@ -1,0 +1,26 @@
+{
+    "sourceFile": "frontend/src/index.css",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1769705956615,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1769789187159,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n   padding: 0;\n   box-sizing: border-box;\n }\n \n-/* Все ники в приложении — шрифт как у логотипа ICHGRAM (Praise) */\n+\n .profile-username,\n .sidebar-current-username,\n .profile-username-row,\n .profile-post-modal-username,\n"
+                },
+                {
+                    "date": 1770888462274,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,142 @@\n+* {\n+  margin: 0;\n+  padding: 0;\n+  box-sizing: border-box;\n+}\n+\n+.profile-username,\n+.sidebar-current-username,\n+.profile-username-row,\n+.profile-post-modal-username,\n+.profile-post-modal-comment-username,\n+.home-sidebar-current-username,\n+.home-create-username,\n+.home-create-username-handle,\n+.home-create-username-fullname,\n+.home-post-username,\n+.home-post-caption-username,\n+.home-notification-username,\n+.home-search-result-username,\n+.home-search-recent-username,\n+.explore-sidebar-current-username,\n+.explore-sidebar-current-name,\n+.explore-modal-comment-username,\n+.messages-chat-username,\n+.messages-chat-header-username,\n+.messages-chats-my-name,\n+.messages-profile-name,\n+.search-recent-username,\n+.search-post-username,\n+.search-post-caption-username,\n+.home-post-modal-comment-username,\n+.saved-modal-comment-username,\n+.global-search-recent-username,\n+.global-search-result-username,\n+.app-sidebar-current-name,\n+.app-sidebar-current-username,\n+.edit-profile-name {\n+  font-family: 'Praise', cursive;\n+}\n+\n+body {\n+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',\n+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',\n+    sans-serif;\n+  -webkit-font-smoothing: antialiased;\n+  -moz-osx-font-smoothing: grayscale;\n+}\n+\n+code {\n+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',\n+    monospace;\n+}\n+\n+:root {\n+  --sidebar-width: 244px;\n+  --container-width: 1440px;\n+  --header-height: 60px;\n+}\n+\n+@media screen and (min-width: 1440px) {\n+  :root {\n+    --sidebar-width: 244px;\n+  }\n+}\n+\n+@media screen and (max-width: 1439px) {\n+  :root {\n+    --sidebar-width: 200px;\n+  }\n+}\n+\n+@media screen and (max-width: 1024px) {\n+  :root {\n+    --sidebar-width: 80px;\n+  }\n+}\n+\n+@media screen and (max-width: 768px) {\n+  :root {\n+    --sidebar-width: 0px;\n+    --header-height: 50px;\n+  }\n+}\n+\n+@media screen and (max-width: 480px) {\n+  :root {\n+    --sidebar-width: 0px;\n+    --header-height: 50px;\n+  }\n+}\n+\n+@media screen and (max-width: 320px) {\n+  :root {\n+    --sidebar-width: 0px;\n+    --header-height: 45px;\n+  }\n+}\n+\n+.hide-on-mobile {\n+  display: block;\n+}\n+\n+.hide-on-tablet {\n+  display: block;\n+}\n+\n+.hide-on-desktop {\n+  display: none;\n+}\n+\n+@media screen and (max-width: 768px) {\n+  .hide-on-mobile {\n+    display: none !important;\n+  }\n+  .hide-on-tablet {\n+    display: block !important;\n+  }\n+  .hide-on-desktop {\n+    display: block !important;\n+  }\n+}\n+\n+@media screen and (max-width: 480px) {\n+  .hide-on-mobile {\n+    display: none !important;\n+  }\n+  .hide-on-tablet {\n+    display: none !important;\n+  }\n+}\n+\n+@media (hover: none) and (pointer: coarse) {\n+  * {\n+    -webkit-tap-highlight-color: transparent;\n+  }\n+\n+  button,\n+  a {\n+    min-height: 44px;\n+    min-width: 44px;\n+  }\n+}\n"
+                }
+            ],
+            "date": 1769705956615,
+            "name": "Commit-0",
+            "content": "* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}\n\n\n.profile-username,\n.sidebar-current-username,\n.profile-post-modal-username,\n.profile-post-modal-comment-username,\n.home-sidebar-current-username,\n.home-create-username-handle,\n.home-post-username,\n.home-post-caption-username,\n.home-notification-username,\n.home-search-result-username,\n.home-search-recent-username,\n.explore-sidebar-current-username,\n.messages-chat-username,\n.messages-chat-header-username,\n.search-recent-username,\n.search-post-username,\n.search-post-caption-username,\n.home-post-modal-comment-username {\n  font-family: 'Praise', cursive;\n}\n\nbody {\n  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',\n    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',\n    sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\ncode {\n  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',\n    monospace;\n}\n"
+        }
+    ]
+}

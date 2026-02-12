@@ -1,0 +1,22 @@
+{
+    "sourceFile": "backend/src/controllers/notificationController.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1769787392394,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1770827346496,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,5 +43,4 @@\n module.exports = {\n   getNotifications,\n   createNotification,\n }\n-\n"
+                }
+            ],
+            "date": 1769787392394,
+            "name": "Commit-0",
+            "content": "const Notification = require('../models/notificationModel')\n\n\nconst getNotifications = async (req, res) => {\n  try {\n    const userId = req.user._id\n\n    const notifications = await Notification.find({ recipient: userId })\n      .sort({ createdAt: -1 })\n      .populate('sender', 'username avatar fullName')\n      .populate('post', 'image images')\n      .lean()\n\n    res.status(200).json({\n      success: true,\n      notifications,\n    })\n  } catch (error) {\n    console.error('Get notifications error:', error)\n    res.status(500).json({\n      success: false,\n      message: 'Server error',\n      error: error.message,\n    })\n  }\n}\n\n\nconst createNotification = async ({ recipient, sender, type, post, commentText }) => {\n  try {\n    if (recipient.toString() === sender.toString()) return \n\n    await Notification.create({\n      recipient,\n      sender,\n      type,\n      post,\n      commentText,\n    })\n  } catch (error) {\n    console.error('Create notification error:', error)\n  }\n}\n\nmodule.exports = {\n  getNotifications,\n  createNotification,\n}\n"
+        }
+    ]
+}

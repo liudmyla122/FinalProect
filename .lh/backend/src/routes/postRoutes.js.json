@@ -1,0 +1,18 @@
+{
+    "sourceFile": "backend/src/routes/postRoutes.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1769702129131,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1769702129131,
+            "name": "Commit-0",
+            "content": "const express = require('express');\nconst router = express.Router();\nconst authMiddleware = require('../middlewares/authMiddleware');\nconst {\n  createPost,\n  getMyPosts,\n  getFeed,\n  deletePost,\n  getPostById,\n  addComment,\n  incrementViews,\n  toggleLike,\n  updatePost,\n} = require('../controllers/postController');\n\n\nrouter.post('/', authMiddleware, createPost);\n\n\nrouter.get('/me', authMiddleware, getMyPosts);\n\n\nrouter.get('/feed', authMiddleware, getFeed);\n\n\nrouter.get('/:id', authMiddleware, getPostById);\n\n\nrouter.delete('/:id', authMiddleware, deletePost);\n\n\nrouter.put('/:id', authMiddleware, updatePost);\n\n\nrouter.post('/:id/comments', authMiddleware, addComment);\n\n\nrouter.post('/:id/views', authMiddleware, incrementViews);\n\n\nrouter.post('/:id/like', authMiddleware, toggleLike);\n\nmodule.exports = router;\n\n"
+        }
+    ]
+}

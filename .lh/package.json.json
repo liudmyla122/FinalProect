@@ -1,0 +1,18 @@
+{
+    "sourceFile": "package.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1770735339118,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1770735339118,
+            "name": "Commit-0",
+            "content": "{\n  \"name\": \"ichgramm\",\n  \"private\": true,\n  \"description\": \"Ichgramm-like app — запуск бэкенда и фронтенда\",\n  \"scripts\": {\n    \"dev\": \"concurrently -n backend,frontend -c blue,green \\\"npm run dev --prefix backend\\\" \\\"npm run dev --prefix frontend\\\"\",\n    \"dev:backend\": \"npm run dev --prefix backend\",\n    \"dev:frontend\": \"npm run dev --prefix frontend\"\n  },\n  \"devDependencies\": {\n    \"concurrently\": \"^8.2.2\"\n  }\n}\n"
+        }
+    ]
+}

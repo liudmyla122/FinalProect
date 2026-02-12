@@ -1,0 +1,18 @@
+{
+    "sourceFile": "backend/src/routes/notificationRoutes.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1769787657005,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1769787657005,
+            "name": "Commit-0",
+            "content": "const express = require('express')\nconst router = express.Router()\nconst authMiddleware = require('../middlewares/authMiddleware')\nconst { getNotifications } = require('../controllers/notificationController')\n\nrouter.get('/', authMiddleware, getNotifications)\n\nmodule.exports = router\n"
+        }
+    ]
+}

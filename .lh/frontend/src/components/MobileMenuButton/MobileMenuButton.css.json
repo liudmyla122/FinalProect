@@ -1,0 +1,18 @@
+{
+    "sourceFile": "frontend/src/components/MobileMenuButton/MobileMenuButton.css",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1770885986569,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1770885986569,
+            "name": "Commit-0",
+            "content": ".mobile-menu-button {\n  display: none;\n  width: 44px;\n  height: 44px;\n  background: rgba(255, 255, 255, 0.1);\n  border: none;\n  border-radius: 12px;\n  cursor: pointer;\n  align-items: center;\n  justify-content: center;\n  color: #fff;\n  transition: background 0.2s;\n  flex-shrink: 0;\n}\n\n.mobile-menu-button:hover {\n  background: rgba(255, 255, 255, 0.2);\n}\n\n.mobile-menu-button svg {\n  width: 24px;\n  height: 24px;\n}\n\n@media screen and (max-width: 768px) {\n  .mobile-menu-button {\n    display: flex;\n  }\n}\n\n@media screen and (max-width: 480px) {\n  .mobile-menu-button {\n    width: 40px;\n    height: 40px;\n    border-radius: 10px;\n  }\n\n  .mobile-menu-button svg {\n    width: 22px;\n    height: 22px;\n  }\n}\n\n@media screen and (max-width: 320px) {\n  .mobile-menu-button {\n    width: 36px;\n    height: 36px;\n    border-radius: 8px;\n  }\n\n  .mobile-menu-button svg {\n    width: 20px;\n    height: 20px;\n  }\n}\n"
+        }
+    ]
+}

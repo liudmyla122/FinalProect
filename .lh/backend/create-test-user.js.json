@@ -1,0 +1,22 @@
+{
+    "sourceFile": "backend/create-test-user.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1770807846468,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1770808221073,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n     \n     await user.save()\n     console.log('Test user created successfully')\n     \n-    // Test login\n+   \n     const testPassword = await bcrypt.compare('password123', hashedPassword)\n     console.log('Password test:', testPassword)\n     \n     process.exit(0)\n"
+                }
+            ],
+            "date": 1770807846468,
+            "name": "Commit-0",
+            "content": "const mongoose = require('mongoose')\nconst bcrypt = require('bcrypt')\nrequire('dotenv').config()\n\nconst User = require('./src/models/userModel')\nconst connectDB = require('./src/config/db')\n\nconst createTestUser = async () => {\n  try {\n    await connectDB()\n    \n    await User.deleteOne({ email: 'test@example.com' })\n    \n    const salt = await bcrypt.genSalt(10)\n    const hashedPassword = await bcrypt.hash('password123', salt)\n    \n    const user = new User({\n      email: 'test@example.com',\n      username: 'testuser',\n      fullName: 'Test User',\n      password: hashedPassword,\n      avatar: '',\n      bio: 'Test user for login'\n    })\n    \n    await user.save()\n    console.log('Test user created successfully')\n    \n    // Test login\n    const testPassword = await bcrypt.compare('password123', hashedPassword)\n    console.log('Password test:', testPassword)\n    \n    process.exit(0)\n  } catch (error) {\n    console.error('Error:', error)\n    process.exit(1)\n  }\n}\n\ncreateTestUser()"
+        }
+    ]
+}

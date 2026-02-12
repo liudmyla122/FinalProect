@@ -1,0 +1,22 @@
+{
+    "sourceFile": "backend/src/debug_create_post.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1770376813967,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1770827363493,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,8 @@\n   try {\n     await mongoose.connect(MONGO_URI)\n     console.log('Connected to MongoDB')\n \n-    // 1. Find user Liudmyla\n     const user = await mongoose.connection.db\n       .collection('users')\n       .findOne({ username: 'Liudmyla' })\n     if (!user) {\n@@ -20,22 +19,20 @@\n       return\n     }\n     console.log('Found user:', user.username, user._id)\n \n-    // 2. Generate Token\n     const token = jwt.sign({ userId: user._id }, JWT_SECRET, {\n       expiresIn: '1h',\n     })\n     console.log('Generated token')\n \n-    // 3. Create Post via API\n     try {\n       const postData = {\n         image:\n-          'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==', // 1x1 red pixel\n+          'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==',\n         title: 'Debug Post',\n         caption: 'This is a test post to verify creation',\n-        profileId: user._id.toString(), // Assign to self as profile\n+        profileId: user._id.toString(),\n       }\n \n       const response = await axios.post(BACKEND_URL, postData, {\n         headers: {\n@@ -59,4 +56,5 @@\n   }\n }\n \n run()\n+\n"
+                }
+            ],
+            "date": 1770376813967,
+            "name": "Commit-0",
+            "content": "const mongoose = require('mongoose');\nconst jwt = require('jsonwebtoken');\nconst axios = require('axios');\n\nconst MONGO_URI = 'mongodb://localhost:27017/instagram';\nconst JWT_SECRET = 'your_super_secret_jwt_key_change_this_in_production';\nconst BACKEND_URL = 'http://localhost:3000/api/posts';\n\nconst run = async () => {\n  try {\n    await mongoose.connect(MONGO_URI);\n    console.log('Connected to MongoDB');\n\n    // 1. Find user Liudmyla\n    const user = await mongoose.connection.db.collection('users').findOne({ username: 'Liudmyla' });\n    if (!user) {\n        console.error('User Liudmyla not found');\n        return;\n    }\n    console.log('Found user:', user.username, user._id);\n\n    // 2. Generate Token\n    const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: '1h' });\n    console.log('Generated token');\n\n    // 3. Create Post via API\n    try {\n        const postData = {\n            image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==', // 1x1 red pixel\n            title: 'Debug Post',\n            caption: 'This is a test post to verify creation',\n            profileId: user._id.toString() // Assign to self as profile\n        };\n\n        const response = await axios.post(BACKEND_URL, postData, {\n            headers: {\n                Authorization: `Bearer ${token}`\n            }\n        });\n\n        console.log('Create Post Response Status:', response.status);\n        console.log('Created Post ID:', response.data.post.id);\n        console.log('Profile ID in response:', response.data.post.profileId);\n\n    } catch (apiError) {\n        console.error('API Error:', apiError.response ? apiError.response.data : apiError.message);\n    }\n\n  } catch (err) {\n    console.error('Error:', err);\n  } finally {\n    await mongoose.disconnect();\n  }\n};\n\nrun();\n"
+        }
+    ]
+}

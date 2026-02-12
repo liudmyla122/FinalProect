@@ -1,0 +1,18 @@
+{
+    "sourceFile": "backend/src/scripts/checkData.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1770812887115,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1770812887115,
+            "name": "Commit-0",
+            "content": "const mongoose = require('mongoose');\nrequire('dotenv').config();\nconst User = require('../models/userModel');\nconst Post = require('../models/postModel');\nconst connectDB = require('../config/db');\n\nconst checkData = async () => {\n  try {\n    await connectDB();\n    \n    console.log('\\n--- USERS ---');\n    const users = await User.find({}).select('username email posts');\n    console.log(`Found ${users.length} users.`);\n    users.forEach(u => {\n      console.log(`- ${u.username} (${u.email}): ${u.posts.length} posts`);\n    });\n\n    console.log('\\n--- RECENT POSTS ---');\n    const posts = await Post.find({}).sort({ createdAt: -1 }).limit(10).populate('user', 'username');\n    console.log(`Found ${posts.length} recent posts (showing max 10).`);\n    posts.forEach(p => {\n      console.log(`[${p.createdAt.toISOString()}] By ${p.user?.username}: ${p.caption ? p.caption.substring(0, 50) : 'No caption'}...`);\n    });\n\n    process.exit(0);\n  } catch (error) {\n    console.error('Error:', error);\n    process.exit(1);\n  }\n};\n\ncheckData();\n"
+        }
+    ]
+}
