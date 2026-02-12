@@ -27,7 +27,7 @@ app.use(
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
-  })
+  }),
 )
 
 app.use('/api/auth', require('./src/routes/authRoutes'))
@@ -50,6 +50,10 @@ app.use((err, req, res, next) => {
     message: err.message || 'Internal server error',
     error: process.env.NODE_ENV === 'development' ? err.stack : undefined,
   })
+})
+
+app.get('/api', (req, res) => {
+  res.json({ message: 'Instagram API Server is running!' })
 })
 
 app.get('/', (req, res) => {
@@ -76,11 +80,11 @@ if (process.env.VERCEL) {
   server.on('error', (err) => {
     if (err.code === 'EADDRINUSE') {
       console.error(
-        `\n❌ Порт ${PORT} уже занят. Завершите другой процесс на порту ${PORT}:\n   macOS/Linux: lsof -i :${PORT}   затем   kill -9 <PID>\n   Или закройте другой терминал с бэкендом и запустите снова.\n`
+        `\n❌ Порт ${PORT} уже занят. Завершите другой процесс на порту ${PORT}:\n   macOS/Linux: lsof -i :${PORT}   затем   kill -9 <PID>\n   Или закройте другой терминал с бэкендом и запустите снова.\n`,
       )
     } else if (err.code === 'EPERM') {
       console.error(
-        `\n❌ Нет прав на порт ${PORT}. Запустите терминал от имени администратора или проверьте настройки системы.\n`
+        `\n❌ Нет прав на порт ${PORT}. Запустите терминал от имени администратора или проверьте настройки системы.\n`,
       )
     } else {
       console.error('\n❌ Ошибка сервера:', err.message)
