@@ -3,6 +3,30 @@
   "outputDirectory": "frontend/dist",
   "rewrites": [
     {
+      "source": "/api/auth/:path*",
+      "destination": "/api/index.js"
+    },
+    {
+      "source": "/api/users/:path*",
+      "destination": "/api/index.js"
+    },
+    {
+      "source": "/api/posts/:path*",
+      "destination": "/api/index.js"
+    },
+    {
+      "source": "/api/search/:path*",
+      "destination": "/api/index.js"
+    },
+    {
+      "source": "/api/explore/:path*",
+      "destination": "/api/index.js"
+    },
+    {
+      "source": "/api/notifications/:path*",
+      "destination": "/api/index.js"
+    },
+    {
       "source": "/api/:path*",
       "destination": "/api/index.js"
     },
